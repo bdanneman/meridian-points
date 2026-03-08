@@ -1,0 +1,79 @@
+# Meridian Points — Deployment Guide
+
+## What you need (all free to start)
+- GitHub account ✓
+- Vercel account ✓  
+- Anthropic API key ✓
+
+---
+
+## Step 1 — Upload the code to GitHub
+
+1. Go to **github.com** and log in
+2. Click the **+** button (top right) → **New repository**
+3. Name it `meridian-points`
+4. Leave everything else as default → click **Create repository**
+5. On the next page, click **uploading an existing file**
+6. Drag and drop ALL the files from this folder into the upload area
+   - Make sure to include the `src/` folder, `api/` folder, and all root files
+7. Click **Commit changes**
+
+---
+
+## Step 2 — Deploy to Vercel
+
+1. Go to **vercel.com** and log in
+2. Click **Add New** → **Project**
+3. Click **Import** next to your `meridian-points` repository
+4. Vercel will auto-detect it as a Vite project — leave all settings as default
+5. **Before clicking Deploy**, click **Environment Variables** and add:
+   - **Name:** `ANTHROPIC_API_KEY`
+   - **Value:** your Anthropic API key (starts with `sk-ant-...`)
+6. Click **Deploy**
+
+Vercel will build and deploy in about 60 seconds.
+
+---
+
+## Step 3 — Your live URL
+
+Once deployed, Vercel gives you a URL like:
+`https://meridian-points.vercel.app`
+
+That's your app — live, shareable, works on any device.
+
+**To share with friends:** just send them the URL. They can use it immediately with no account needed.
+
+---
+
+## Step 4 — Custom domain (optional)
+
+If you want a custom domain like `meridianpoints.com`:
+1. Buy a domain at Namecheap or Google Domains (~$12/yr)
+2. In Vercel → your project → **Settings** → **Domains**
+3. Add your domain and follow Vercel's DNS instructions
+
+---
+
+## Updating the app in the future
+
+Whenever you want to make changes:
+1. Go to your GitHub repository
+2. Click the file you want to edit → pencil icon to edit
+3. Save the changes → Vercel automatically re-deploys within 30 seconds
+
+---
+
+## Cost estimate
+
+- **Vercel hosting:** Free (up to 100GB bandwidth/month)
+- **Anthropic API:** ~$0.01–0.03 per conversation
+- **$10 in API credits** will cover hundreds of conversations
+
+---
+
+## Security notes
+
+- Your Anthropic API key is stored as a Vercel environment variable — it never appears in the code or browser
+- The `/api/chat` proxy ensures users can only make AI chat requests — nothing else
+- No user data is stored on any server — everything stays in the user's own browser
