@@ -795,11 +795,14 @@ export default function MeridianConcierge() {
 
       // Multi-turn loop to handle web search tool use
       for (let turn = 0; turn < 5; turn++) {
-        const res = await fetch("/api/chat", {
+        const res = await fetch("https://api.anthropic.com/v1/messages", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
+            model: "claude-sonnet-4-6",
+            max_tokens: 1000,
             system: systemPrompt,
+            tools: [{ type: "web_search_20250305", name: "web_search" }],
             messages: conversationMessages,
           }),
         });
@@ -1188,4 +1191,3 @@ export default function MeridianConcierge() {
     </>
   );
 }
-
